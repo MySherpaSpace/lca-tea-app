@@ -4,47 +4,68 @@ const AppTopMenu = (props) => {
 
   const isSaveVisible = () => {
     return (
-     props.selectedMode === "lca" && (
-        props.selectedPage === "projectInformation" || props.selectedPage === "impactCategorySelection" ||
-        props.selectedPage === "feed" || props.selectedPage === "utility" || props.selectedPage === "waste" || 
-        props.selectedPage === "transportData" || props.selectedPage === "analysisByCoefficient"
+     props.currentMode === "lca" && (
+        props.currentPage === "LCA_ProjectInfo" || props.currentPage === "LCA_ImpactCateg" ||
+        props.currentPage === "LCA_Feed" || props.currentPage === "LCA_Utility" || props.currentPage === "LCA_Waste" || 
+        props.currentPage === "LCA_TransportData" || props.currentPage === "LCA_AnalysisByCoe"
       )
     )
   }
 
-  const isExportVisible = props.selectedMode === "lca";
+  const isExportVisible = props.currentMode === "lca";
 
   const isResetVisible = () => {
     return (
-      props.selectedMode === "lca" && (
-        props.selectedPage === "projectInformation" || props.selectedPage === "impactCategorySelection" ||
-        props.selectedPage === "feed" || props.selectedPage === "utility" || props.selectedPage === "waste" || 
-        props.selectedPage === "transportData"
+      props.currentMode === "lca" && (
+        props.currentPage === "LCA_ProjectInfo" || props.currentPage === "LCA_ImpactCateg" ||
+        props.currentPage === "LCA_Feed" || props.currentPage === "LCA_Utility" || props.currentPage === "LCA_Waste" || 
+        props.currentPage === "LCA_TransportData"
       )
     );
   }
-  const isRunVisible = props.selectedMode === "lca" && props.selectedPage === "transport data";
+  const isRunVisible = props.currentMode === "lca" && props.currentPage === "LCA_TransportData";
 
   const TopMenuTab = ({iconName, title, onPress}) => {
-    const onThisPress = () => onPress()
+    const onThisPress = () => onPress(title.toLowerCase())
     return (
-      <a className="item" onClick={onThisPress}>
+      <a className="item" onClick={onThisPress} href="/#">
+        <i className={`${iconName} icon`}></i> {title}
+      </a>
+    );
+  }
+
+  const TopMenuAction = ({iconName, title, onPress}) => {
+    const onThisPress = () => onPress(title)
+    return (
+      <a className="item" onClick={onThisPress} href="/#">
         <i className={`${iconName} icon`}></i> {title}
       </a>
     );
   }
 
   const LowerMenuTab = ({title}) => {
-    const onThisPress = () => props.onModePress(title)
+    const onThisPress = () => onSetCurrentModePress(title)
     return (
       <a 
-        className={props.selectedMode.toLowerCase() === title.toLowerCase() ?"active header item":"item"} 
+        className={props.currentMode.toLowerCase() === title.toLowerCase() ?"active header item":"item"} 
         style={{flex:1, justifyContent: "center"}} 
         onClick={onThisPress}
+        href="/#"
       > 
         {title}
       </a>
     );
+  }
+
+  const onExitPress = () => {
+    if(window.confirm("Are you sure you want to exit?")){
+      alert("Logged out!")
+      onSetCurrentModePress("auth")
+    }    
+  }
+
+  const onSetCurrentModePress = (modeName) => {
+    props.setCurrentMode(modeName)
   }
 
   return(
@@ -52,49 +73,53 @@ const AppTopMenu = (props) => {
       <div className="ui menu">
         <div className="ui fluid container">
           <div className="left menu">
-            <TopMenuTab iconName="user" title="Account" onPress={()=>{}}/>
-            <TopMenuTab iconName="home" title="Home" onPress={()=>{}}/>
+            <TopMenuTab iconName="user" title="Account" onPress={onSetCurrentModePress}/>
+            {props.currentMode !== "home" && (
+              <TopMenuTab iconName="home" title="Home" onPress={onSetCurrentModePress}/>
+            )}
 
             {isSaveVisible() && ( 
-              <TopMenuTab iconName="save" title="Save" onPress={()=>{}}/>
+              <TopMenuAction iconName="save" title="Save" onPress={()=>{}}/>
             )}
 
             {isExportVisible && (
-              <TopMenuTab iconName="download" title="Export" onPress={()=>{}}/>
+              <TopMenuAction iconName="download" title="Export" onPress={()=>{}}/>
             )}
           </div>
 
           <div className="right menu">
             {isRunVisible && (
-              <TopMenuTab iconName="play" title="Run" onPress={()=>{}}/>
+              <TopMenuAction iconName="play" title="Run" onPress={()=>{}}/>
             )}
 
             {isResetVisible() && (
-              <TopMenuTab iconName="redo" title="Reset" onPress={()=>{}}/>
+              <TopMenuAction iconName="redo" title="Reset" onPress={()=>{}}/>
             )}
 
-            <TopMenuTab iconName="sign out alternate" title="Exit" onPress={()=>{}}/>
+            <TopMenuTab iconName="sign out alternate" title="Exit" onPress={onExitPress}/>
 
           </div>
         </div>    
       </div>
-      <div className="ui tabular menu">
-        <div className="ui fluid container">
-          <LowerMenuTab title={"Basic Information"}/>
-          <LowerMenuTab title={"TEA"}/>
-          <LowerMenuTab title={"LCA"}/>
-          <LowerMenuTab title={"Summary"}/>
-          <LowerMenuTab title={"Sensitivity Analysis"}/>
+      {!props.currentPage.includes("Global") && (
+        <div className="ui tabular menu">
+          <div className="ui fluid container">
+            <LowerMenuTab title={"Basic Information"} onPress={onSetCurrentModePress}/>
+            <LowerMenuTab title={"TEA"} onPress={onSetCurrentModePress}/>
+            <LowerMenuTab title={"LCA"} onPress={onSetCurrentModePress}/>
+            <LowerMenuTab title={"Summary"} onPress={onSetCurrentModePress}/>
+            <LowerMenuTab title={"Sensitivity Analysis"} onPress={onSetCurrentModePress}/>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 AppTopMenu.defaultProps = {
-  selectedMode: "lca",
-  selectedPage: "projectInformation",
-  onModePress: (txt) => console.log(txt)
+  currentPage: "",
+  currentMode: "lca",
+  setCurrentMode: () => {}
 }
  
 export default AppTopMenu;

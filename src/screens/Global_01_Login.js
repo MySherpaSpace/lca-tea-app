@@ -1,8 +1,9 @@
 import React from 'react';
  
-const LoginPg = () => {
+const LoginPg = (props) => {
+  const onLoginPress = () => props.onLogin("home")
+  
   return (
-
     <div className="ui placeholder segment">
       <div className="ui two column very relaxed stackable grid">
         <div className="column">
@@ -21,7 +22,7 @@ const LoginPg = () => {
                 <i className="lock icon"></i>
               </div>
             </div>
-            <div className="ui blue submit button">Login</div>
+            <div className="ui blue submit button" onClick={onLoginPress}>Login</div>
           </div>
         </div>
         <div className="middle aligned column">
@@ -36,6 +37,10 @@ const LoginPg = () => {
       </div>
     </div>
   );
+}
+
+LoginPg.defaultProps = {
+  onLogin: () => {}
 }
  
 export default LoginPg;

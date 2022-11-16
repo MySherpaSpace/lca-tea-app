@@ -3,9 +3,6 @@ import React, { forwardRef, useState } from 'react';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-import AppTopMenu from '../../components/AppTopMenu';
-import LCASideMenu from '../../components/LCASideMenu';
  
 const ProjectInfoPg = () => {
 
@@ -34,7 +31,7 @@ const ProjectInfoPg = () => {
   }
 
   const CustomPickerButton = forwardRef(({ value, onClick }, ref) => (
-    <button class="fluid ui primary basic button" onClick={onClick} ref={ref}>
+    <button className="fluid ui primary basic button" onClick={onClick} ref={ref}>
       {value}
     </button>
   ));
@@ -97,28 +94,15 @@ const ProjectInfoPg = () => {
 
   return (
     <div>
-      <AppTopMenu selectedMode="lca" selectedPage="projectInformation"/>
+      <LineInput title="Quantitative Reference" top/>
 
-      <div className="section-container">
-        <div className="ui two column grid">
-          <div className="ui three wide column">
-            <LCASideMenu selectedPage="projectInformation"/>
-          </div>          
-          
-          <div className="ui thirteen wide column">
-            <LineInput title="Quantitative Reference" top/>
+      <LineDateInput title="Period of Data Collection" pH1="start" pH2="end"/>
 
-            <LineDateInput title="Period of Data Collection" pH1="start" pH2="end"/>
+      <LineTwoInput title="Functional Unit"/>
 
-            <LineTwoInput title="Functional Unit"/>
+      <LineInput title="Description" />
 
-            <LineInput title="Description" />
-
-            <LineInput title="Goal & Scope Definition" /> 
-          </div>
-        </div>
-      </div>
-
+      <LineInput title="Goal & Scope Definition" /> 
     </div>
   );
 }

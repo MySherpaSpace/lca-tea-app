@@ -8,10 +8,6 @@ const LCASideMenu = (props) => {
   const [isImpactAssesmentMenuExpanded, setIsImpactAssesmentMenuExpanded] = useState(false)
   const [isSummaryMenuExpanded, setIsSummaryMenuExpanded] = useState(false)
 
-  const [currentPage, setCurrentPage] = useState(props.selectedPage)
-
-  useEffect(()=> setCurrentPage(props.selectedPage),[props.selectedPage])
-
   const AccordionMenu = ({children, title, isExpanded, onExpand}) => {
     const onThisPress = () => onExpand(prev => !prev);
 
@@ -31,13 +27,12 @@ const LCASideMenu = (props) => {
   const MenuItem = ({title, alias}) => {
 
     const onThisPress = () => {
-      setCurrentPage(alias)
       props.onPagePress(alias)
     }
 
     return (
-      <div className={currentPage === alias? "title active":"title"} onClick={onThisPress}>
-        <p style={{color: currentPage === alias? "#0E6EB8":"#A0A0A0"}}>{title}</p>
+      <div className={props.currentPage === alias? "title active":"title"} onClick={onThisPress}>
+        <p style={{color: props.currentPage === alias? "#0E6EB8":"#A0A0A0"}}>{title}</p>
       </div>
     )
   }
@@ -46,30 +41,31 @@ const LCASideMenu = (props) => {
     <div className="ui styled accordion">
 
       <AccordionMenu title="Input" isExpanded={isInputMenuExpanded} onExpand={setIsInputMenuExpanded}>
-        <MenuItem title="Project Information" alias="projectInformation" />
-        <MenuItem title="Impact Category Selection" alias="impactCategorySelection" />
+        <MenuItem title="Project Information" alias="LCA_ProjectInfo" />
+        <MenuItem title="Impact Category Selection" alias="LCA_ImpactCateg" />
 
         <AccordionMenu title="Inventory Analysis" isExpanded={isInventoryAnalysisExpanded} onExpand={setIsInventoryAnalysisExpanded}>
-          <MenuItem title="Feed" alias="feed" />
-          <MenuItem title="Utility" alias="utility" />
-          <MenuItem title="Waste" alias="waste" />
+          <MenuItem title="Feed" alias="LCA_Feed" />
+          <MenuItem title="Utility" alias="LCA_Utility" />
+          <MenuItem title="Waste" alias="LCA_Waste" />
         </AccordionMenu>
 
-        <MenuItem title="Transport Data" alias="transportData" />
+        <MenuItem title="Transport Data" alias="LCA_TransportData" />
       </AccordionMenu>
 
       <AccordionMenu title="Result" isExpanded={isResultMenuExpanded} onExpand={setIsResultMenuExpanded}>
 
         <AccordionMenu title="Impact Assesment" isExpanded={isImpactAssesmentMenuExpanded} onExpand={setIsImpactAssesmentMenuExpanded}>
-          <MenuItem title="Analysis By Coefficient" alias="analysisByCoefficient" />
-          <MenuItem title="Fuel Combustion" alias="fuelCombustion" />
-          <MenuItem title="Life Cycle Assessment" alias="lifeCycleAssessment" />
+          <MenuItem title="Analysis By Coefficient" alias="LCA_AnalysisByCoe" />
+          <MenuItem title="Fuel Combustion" alias="LCA_FuelCombustion" />
+          <MenuItem title="Life Cycle Assessment" alias="LCA_LifeCycleAsses" />
         </AccordionMenu>
 
         <AccordionMenu title="Summary" isExpanded={isSummaryMenuExpanded} onExpand={setIsSummaryMenuExpanded}>
-          <MenuItem title="Analysis By Material" alias="analysisByMaterial" />
-          <MenuItem title="Analysis By Category" alias="analysisByCategory" />
-          <MenuItem title="Analysis By Manufacturing Stage" alias="analysisByManufacturingStage" />
+          <MenuItem title="Overview" alias="LCA_Overview" />
+          <MenuItem title="Analysis By Material" alias="LCA_AnalysisByMate" />
+          <MenuItem title="Analysis By Category" alias="LCA_AnalysisByCate" />
+          <MenuItem title="Analysis By Manufacturing Stage" alias="LCA_AnalysisByManu" />
         </AccordionMenu>
 
       </AccordionMenu>
@@ -78,7 +74,7 @@ const LCASideMenu = (props) => {
 }
 
 LCASideMenu.defaultProps = {
-  selectedPage: "projectInformation",
+  currentPage: "projectInformation",
   onPagePress: (item) => console.log(item)
 }
  

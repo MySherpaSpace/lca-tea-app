@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 import AssesmentMethodsList from "../../utils/AssesmentMethods";
 
-import AppTopMenu from '../../components/AppTopMenu';
-import LCASideMenu from '../../components/LCASideMenu';
-
 const ImpactCategPg = () => {
 
   const [selectedAssesment, setSelectedAssesment] = useState(AssesmentMethodsList[0])
@@ -108,21 +105,8 @@ const ImpactCategPg = () => {
 
   return (
     <div>
-      <AppTopMenu selectedMode="lca" selectedPage="projectInformation"/>
-
-      <div className="section-container">
-        <div className="ui two column grid">
-          <div className="ui three wide column">
-            <LCASideMenu selectedPage="projectInformation"/>
-          </div>          
-          
-          <div className="ui thirteen wide column">
-            <LineDropdown title={"Assesment Method"} selected={selectedAssesment}/>
-            <LineCheckBox title={"Impact Category"}/>
-          </div>
-        </div>
-      </div>
-
+      <LineDropdown title={"Assesment Method"} selected={selectedAssesment}/>
+      <LineCheckBox title={"Impact Category"}/>
     </div>
   );
 }

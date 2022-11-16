@@ -1,21 +1,12 @@
-import "./HomePg.css";
+import "./Global_02_Home.css";
 
 import React from 'react';
  
-const HomePg = () => {
+const HomePg = (props) => {
+  const onStartPress = () => props.onStart("lca")
+
   return (
     <div>
-      <div className="ui menu">
-        <div className="ui fluid container">
-          <div className="left menu">
-            <a className="item"><i className="user icon"></i> Account</a>
-          </div>
-          <div className="right menu">
-            <a className="item"><i className="sign out alternate icon"></i> Exit</a>
-          </div>
-        </div>
-      </div>
-
       <div className="start-container">
         <div className="start-center">
           <div className="ui placeholder segment">
@@ -33,7 +24,7 @@ const HomePg = () => {
                   <div className="ui icon header">
                     <i className="chart area icon"></i>
                   </div>
-                  <div className="ui primary button">
+                  <div className="ui primary button" onClick={onStartPress}>
                     Start Page
                   </div>
                 </div>
@@ -45,6 +36,10 @@ const HomePg = () => {
 
     </div>
   );
+}
+
+HomePg.defaultProps = {
+  onStart: () => {}
 }
  
 export default HomePg;
