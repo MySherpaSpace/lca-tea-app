@@ -1,4 +1,6 @@
 import React from 'react';
+
+//// removed from <a> tags href="/lca-tea-app">
  
 const AppTopMenu = (props) => {
 
@@ -28,7 +30,7 @@ const AppTopMenu = (props) => {
   const TopMenuTab = ({iconName, title, onPress}) => {
     const onThisPress = () => onPress(title.toLowerCase())
     return (
-      <a className="item" onClick={onThisPress} href="/#">
+      <a className="item" onClick={onThisPress}>
         <i className={`${iconName} icon`}></i> {title}
       </a>
     );
@@ -37,7 +39,7 @@ const AppTopMenu = (props) => {
   const TopMenuAction = ({iconName, title, onPress}) => {
     const onThisPress = () => onPress(title)
     return (
-      <a className="item" onClick={onThisPress} href="/#">
+      <a className="item" onClick={onThisPress}>
         <i className={`${iconName} icon`}></i> {title}
       </a>
     );
@@ -50,7 +52,6 @@ const AppTopMenu = (props) => {
         className={props.currentMode.toLowerCase() === title.toLowerCase() ?"active header item":"item"} 
         style={{flex:1, justifyContent: "center"}} 
         onClick={onThisPress}
-        href="/#"
       > 
         {title}
       </a>
