@@ -54,61 +54,44 @@ const ImpactCategPg = () => {
     </li>
   );
 
-  const LineDropdown = ({title, top, selected}) => {
-    return (
-      <div className='row' style={{marginTop: top? 0:10}}>
-        <div className="ui centered column grid">
+  const Tab = () => <span>&nbsp;&nbsp;&nbsp;</span>
 
-          <div className="three wide column">
-            <div className="ui large label" style={{width: 250}}>
-              {title}
-            </div>
-          </div>
-
-          <div className="six wide center aligned column">
-            <div className={`ui fluid simple dropdown`}> 
+  return (
+    <div className="ui centered container">
+      <div className="ui form">
+        <div className="inline fields">
+          <label className="ui label">Assesment Method<Tab/></label>
+          <div className="six wide field">
+          <div className={`ui fluid simple dropdown`}> 
                 <div className="ui fluid selection dropdown">
-                  <input name={selected.method_name}/>             
-                  <div className="text">{selected.method_name}</div>
+                  <input name={selectedAssesment.method_name}/>             
+                  <div className="text">{selectedAssesment.method_name}</div>
                   <i className="dropdown icon"></i>
                 </div>
               <ul className={`menu`}>{listItems}</ul>
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  const LineCheckBox = ({title, top}) => {
-    return (
-      <div className='row' style={{marginTop: top? 0:10}}>
-        <div className="ui centered column grid">
-
-          <div className="three wide column">
-            <div className="ui large label" style={{width: 250}}>
-              {title}
-            </div>
-          </div>
-
-          <div className="six wide left aligned column">
-            <ul className={`ui form`}>
-              <div className="grouped fields">
+        <div className="inline field">
+          <label className="ui label">Impact Categories<Tab/></label>
+          <div className="six wide field">
+            <ul className="ui form">
+              <ul className="grouped fields">
               {checkboxItems}
-              </div>
+              </ul>
             </ul>
           </div>
         </div>
       </div>
-    );
-  }
-
-  return (
-    <div>
-      <LineDropdown title={"Assesment Method"} selected={selectedAssesment}/>
-      <LineCheckBox title={"Impact Category"}/>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     <LineDropdown title={"Assesment Method"} selected={selectedAssesment}/>
+  //     <LineCheckBox title={"Impact Category"}/>
+  //   </div>
+  // );
 }
  
 export default ImpactCategPg;
