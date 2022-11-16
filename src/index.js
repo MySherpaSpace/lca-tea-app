@@ -29,7 +29,7 @@ const LCAPages = props => {
 
 class App extends React.Component {
   //app modes -> auth, home, newProject, basicInfo, lca, tea, summary, sensitivityAnalysis
-  state = {currentMode: "auth", currentPage: "Global_Login"}//"LCA_01_ProjectInfo"}
+  state = {currentMode: "lca", currentPage: "LCA_ProjectInfo"}//"LCA_ProjectInfo"}
 
   renderAppPages() {
     if(this.state.currentMode === "auth"){
