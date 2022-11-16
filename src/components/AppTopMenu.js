@@ -79,12 +79,12 @@ const AppTopMenu = (props) => {
               <TopMenuTab iconName="home" title="Home" onPress={onSetCurrentModePress}/>
             )}
 
-            {isSaveVisible() && ( 
-              <TopMenuAction iconName="save" title="Save" onPress={()=>{}}/>
-            )}
-
             {isExportVisible && (
               <TopMenuAction iconName="download" title="Export" onPress={()=>{}}/>
+            )}
+
+            {isSaveVisible() && ( 
+              <TopMenuAction iconName="save" title="Save" onPress={()=>{}}/>
             )}
           </div>
 
