@@ -1,0 +1,11 @@
+.start-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.start-center {
+  height: 45vh;
+  width: 100vh;
+}
