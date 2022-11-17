@@ -1,5 +1,7 @@
 import "./Global_01_Login.css"
 import React, { useState } from 'react';
+
+import AppLogo from "../img/app-logo.png"
  
 const LoginPg = ({ onLogin }) => {
 
@@ -18,7 +20,7 @@ const LoginPg = ({ onLogin }) => {
     <div className='card-container'>
         <div className="ui centered card">
           <div style={{paddingTop:20}}>
-            <img className="ui centered circular tiny image" src={require("../img/app-logo.png")}/>
+            <img className="ui centered circular tiny image" src={AppLogo} alt="sherpa space inc logo"/>
           </div>
           <div className='ui centered header'>LCA-TEA App</div>
           <div className='content'>
