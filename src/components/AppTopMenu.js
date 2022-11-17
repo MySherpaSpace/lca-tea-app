@@ -2,38 +2,39 @@ import React from 'react';
 
 //// removed from <a> tags href="/lca-tea-app">
  
-const AppTopMenu = (props) => {
+const AppTopMenu = ({ currentMode, currentPage, setCurrentMode }) => {
 
   const isSaveVisible = () => {
     return (
-     props.currentMode === "lca" && (
-        props.currentPage === "LCA_ProjectInfo" || props.currentPage === "LCA_ImpactCateg" ||
-        props.currentPage === "LCA_Feed" || props.currentPage === "LCA_Utility" || props.currentPage === "LCA_Waste" || 
-        props.currentPage === "LCA_TransportData" || props.currentPage === "LCA_AnalysisByCoe"
+      currentMode === "lca" && (
+         currentPage === "LCA_ProjectInfo" ||  currentPage === "LCA_ImpactCateg" ||
+         currentPage === "LCA_Feed" ||  currentPage === "LCA_Utility" ||  currentPage === "LCA_Waste" || 
+         currentPage === "LCA_TransportData" ||  currentPage === "LCA_AnalysisByCoe"
       )
     )
   }
 
-  const isExportVisible = props.currentMode === "lca";
+  const isExportVisible =  currentMode === "lca";
 
   const isResetVisible = () => {
     return (
-      props.currentMode === "lca" && (
-        props.currentPage === "LCA_ProjectInfo" || props.currentPage === "LCA_ImpactCateg" ||
-        props.currentPage === "LCA_Feed" || props.currentPage === "LCA_Utility" || props.currentPage === "LCA_Waste" || 
-        props.currentPage === "LCA_TransportData"
+       currentMode === "lca" && (
+         currentPage === "LCA_ProjectInfo" ||  currentPage === "LCA_ImpactCateg" ||
+         currentPage === "LCA_Feed" ||  currentPage === "LCA_Utility" ||  currentPage === "LCA_Waste" || 
+         currentPage === "LCA_TransportData"
       )
     );
   }
-  const isRunVisible = props.currentMode === "lca" && props.currentPage === "LCA_TransportData";
+  const isRunVisible =  currentMode === "lca" &&  currentPage === "LCA_TransportData";
 
-  const onSetCurrentModePress = (modeName) => props.setCurrentMode(modeName)
+  const onSetCurrentModePress = (modeName) =>  setCurrentMode(modeName)
 
-  const LowerMenuTab = ({title}) => {
+  const LowerMenuTab = ({ title }) => {
+
     const onThisPress = () => onSetCurrentModePress(title)
     return (
       <a 
-        className={props.currentMode.toLowerCase() === title.toLowerCase() ?"active header item":"item"} 
+        className={ currentMode.toLowerCase() === title.toLowerCase() ?"active header item":"item"} 
         style={{flex:1, justifyContent: "center"}} 
         onClick={onThisPress}
       > 
@@ -57,7 +58,7 @@ const AppTopMenu = (props) => {
     <div>
       <div className='ui secondary menu'>
         <a className='item'><i className="user small icon"></i><SmallTab/>Account</a>
-        {props.currentMode !== "home" && <a className='item' onClick={onHomePress}><i className="home small icon"></i><SmallTab/>Home</a>}
+        { currentMode !== "home" && <a className='item' onClick={onHomePress}><i className="home small icon"></i><SmallTab/>Home</a>}
         {isExportVisible && <a className='item'><i className="download small icon"></i><SmallTab/>Export</a>}
         {isSaveVisible() && <a className='item'><i className="save small icon"></i><SmallTab/>Save</a>}
 
@@ -68,7 +69,7 @@ const AppTopMenu = (props) => {
         </div>
       </div>
 
-      {!props.currentPage.includes("Global") && (
+      {! currentPage.includes("Global") && (
         <div className="ui tabular menu">
           <div className="ui fluid container">
             <LowerMenuTab title={"Basic Information"} onPress={onSetCurrentModePress}/>

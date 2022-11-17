@@ -2,8 +2,8 @@ import "./Global_02_Home.css";
 
 import React from 'react';
  
-const HomePg = (props) => {
-  const onStartPress = () => props.onStart("lca")
+const HomePg = ({ onStart }) => {
+  const onStartPress = () => onStart("lca")
 
   return (
     <div>

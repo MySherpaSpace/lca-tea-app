@@ -1,10 +1,11 @@
 import "./Global_01_Login.css"
 import React, { useState } from 'react';
  
-const LoginPg = (props) => {
+const LoginPg = ({ onLogin }) => {
+
   const [userName, setUserName] = useState("")
   const [userPassword, setUserPassword] = useState("")
-  const onLoginPress = () => props.onLogin("home")
+  const onLoginPress = () => onLogin("home")
 
   const [rememberMe, setRememberMe] = useState(false)
 

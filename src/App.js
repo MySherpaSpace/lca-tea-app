@@ -9,15 +9,17 @@ import AppTopMenu from './components/AppTopMenu';
 import LCASideMenu from './components/LCASideMenu';
 
 const LCAPages = props => {
+  const { currentPage, children, onPagePress } = props
+
   return (
     <div className='section-container'>
       <div className="ui grid">
         <div className="four wide column">
-          <LCASideMenu currentPage={props.currentPage} onPagePress={props.onPagePress}/>     
+          <LCASideMenu currentPage={currentPage} onPagePress={onPagePress}/>     
         </div> 
           
         <div className="twelve wide stretched column">
-          {props.children}
+          {children}
         </div>
       </div>
     </div>
