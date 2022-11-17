@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import LoginPg from './screens/Global_01_Login';
@@ -13,13 +13,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const LCAPages = props => {
   return (
-    <div className="section-container">
-      <div className="ui two column grid">
-        <div className="ui three wide column">
-          <LCASideMenu currentPage={props.currentPage} onPagePress={props.onPagePress}/>
-        </div>          
-        
-        <div className="ui thirteen wide column">
+    <div className='section-container'>
+      <div className="ui grid">
+        <div className="four wide column">
+          <LCASideMenu currentPage={props.currentPage} onPagePress={props.onPagePress}/>     
+        </div> 
+          
+        <div className="twelve wide stretched column">
           {props.children}
         </div>
       </div>
@@ -27,64 +27,71 @@ const LCAPages = props => {
   );
 }
 
-class App extends React.Component {
-  //app modes -> auth, home, newProject, basicInfo, lca, tea, summary, sensitivityAnalysis
-  state = {currentMode: "lca", currentPage: "LCA_ProjectInfo"}//"LCA_ProjectInfo"}
 
-  renderAppPages() {
-    if(this.state.currentMode === "auth"){
-      return <LoginPg onLogin={this.handleModeChange.bind(this)}/>
-    }else if(this.state.currentMode === "home"){
-      return <HomePg onStart={this.handleModeChange.bind(this)}/>
-    }else if(this.state.currentMode === "lca"){
+function App() {
+  const [currentMode, setCurrentMode] = useState("lca")
+  const [currentPage, setCurrentPage] = useState("LCA_ProjectInfo")
 
-      let thisComp = () => <ProjectInfoPg/>
+  const handleModeChange = (event) => {
+    if(event === "home"){
+      setCurrentMode(event);
+      setCurrentPage("Global_Home");
+    }else if(event === "auth"){
+      setCurrentMode(event);
+      setCurrentPage("Global_Login");
+    }else if(event === "lca"){
+      setCurrentMode(event);
+      setCurrentPage("LCA_ProjectInfo");
+    }
+  }
 
-      if(this.state.currentPage === "LCA_ProjectInfo"){
-        thisComp = () => <ProjectInfoPg/>
-      }else if(this.state.currentPage === "LCA_ImpactCateg"){
-        thisComp = () => <ImpactCategPg/>
+  const handlePageChange = (event) => setCurrentPage(event)
+
+  const RenderAppPages = () => {
+    if(currentMode === "auth"){
+      return <LoginPg onLogin={handleModeChange}/>
+    }else if(currentMode === "home"){
+      return <HomePg onStart={handleModeChange}/>
+    }else if(currentMode === "lca"){
+
+      let ThisComp = () => <ProjectInfoPg/>
+
+      if(currentPage === "LCA_ProjectInfo"){
+        ThisComp = () => <ProjectInfoPg/>
+      }else if(currentPage === "LCA_ImpactCateg"){
+        ThisComp = () => <ImpactCategPg/>
       }else{
-        thisComp = () => <div/>
+        ThisComp = () => <></>
       }
 
       return(
-        <LCAPages currentPage={this.state.currentPage} onPagePress={this.handlePageChange.bind(this)}>
-          <div>{thisComp()}</div>
+        <LCAPages currentPage={currentPage} onPagePress={handlePageChange}>
+          <ThisComp/>
         </LCAPages>
       )
     }
   }
 
-  handleModeChange = (event) => {
-    if(event === "home"){
-      this.setState({currentMode: event, currentPage: "Global_Home"})
-    }else if(event === "auth"){
-      this.setState({currentMode: event, currentPage: "Global_Login"})
+  const RenderTopMenu = () => {
+    if(currentMode !== "auth"){
+      return(
+        <AppTopMenu 
+        currentMode={currentMode}
+        setCurrentMode={handleModeChange}
+        currentPage={currentPage}          
+        />
+      );
     }
-    else if(event === "lca"){
-      this.setState({currentMode: event, currentPage: "LCA_ProjectInfo"})
-    }
+
+    return <></>
   }
 
-  handlePageChange = (event) => {
-    this.setState({currentPage: event})
-  }
-
-  render() {
-    return(
-      <div>
-        {this.state.currentMode !== "auth"&&(
-          <AppTopMenu 
-          currentMode={this.state.currentMode}
-          setCurrentMode={this.handleModeChange.bind(this)}
-          currentPage={this.state.currentPage}          
-          />
-        )}
-        <div>{this.renderAppPages()}</div>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <RenderTopMenu/>
+      <RenderAppPages/>
+    </div>
+  );
 }
  
 root.render(<App/>);
