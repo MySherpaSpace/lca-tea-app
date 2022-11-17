@@ -27,23 +27,7 @@ const AppTopMenu = (props) => {
   }
   const isRunVisible = props.currentMode === "lca" && props.currentPage === "LCA_TransportData";
 
-  const TopMenuTab = ({iconName, title, onPress}) => {
-    const onThisPress = () => onPress(title.toLowerCase())
-    return (
-      <a className="item" onClick={onThisPress}>
-        <i className={`${iconName} icon`}></i> {title}
-      </a>
-    );
-  }
-
-  const TopMenuAction = ({iconName, title, onPress}) => {
-    const onThisPress = () => onPress(title)
-    return (
-      <a className="item" onClick={onThisPress}>
-        <i className={`${iconName} icon`}></i> {title}
-      </a>
-    );
-  }
+  const onSetCurrentModePress = (modeName) => props.setCurrentMode(modeName)
 
   const LowerMenuTab = ({title}) => {
     const onThisPress = () => onSetCurrentModePress(title)
@@ -65,43 +49,25 @@ const AppTopMenu = (props) => {
     }    
   }
 
-  const onSetCurrentModePress = (modeName) => {
-    props.setCurrentMode(modeName)
-  }
+  const onHomePress = () => onSetCurrentModePress("home")
+
+  const SmallTab = () => <span>&nbsp;</span>
 
   return(
     <div>
-      <div className="ui menu">
-        <div className="ui fluid container">
-          <div className="left menu">
-            <TopMenuTab iconName="user" title="Account" onPress={onSetCurrentModePress}/>
-            {props.currentMode !== "home" && (
-              <TopMenuTab iconName="home" title="Home" onPress={onSetCurrentModePress}/>
-            )}
+      <div className='ui secondary menu'>
+        <a className='item'><i className="user small icon"></i><SmallTab/>Account</a>
+        {props.currentMode !== "home" && <a className='item' onClick={onHomePress}><i className="home small icon"></i><SmallTab/>Home</a>}
+        {isExportVisible && <a className='item'><i className="download small icon"></i><SmallTab/>Export</a>}
+        {isSaveVisible() && <a className='item'><i className="save small icon"></i><SmallTab/>Save</a>}
 
-            {isExportVisible && (
-              <TopMenuAction iconName="download" title="Export" onPress={()=>{}}/>
-            )}
-
-            {isSaveVisible() && ( 
-              <TopMenuAction iconName="save" title="Save" onPress={()=>{}}/>
-            )}
-          </div>
-
-          <div className="right menu">
-            {isRunVisible && (
-              <TopMenuAction iconName="play" title="Run" onPress={()=>{}}/>
-            )}
-
-            {isResetVisible() && (
-              <TopMenuAction iconName="redo" title="Reset" onPress={()=>{}}/>
-            )}
-
-            <TopMenuTab iconName="sign out alternate" title="Exit" onPress={onExitPress}/>
-
-          </div>
-        </div>    
+        <div className='right menu'>
+          {isRunVisible && <a className='item'><i className="play small icon"></i><SmallTab/>Run</a>}
+          {isResetVisible() && <a className='item'><i className="redo small icon"></i><SmallTab/>Reset</a>}
+          <a className='item' onClick={onExitPress}><i className="sign out alternative small icon"></i><SmallTab/>Exit</a>
+        </div>
       </div>
+
       {!props.currentPage.includes("Global") && (
         <div className="ui tabular menu">
           <div className="ui fluid container">
