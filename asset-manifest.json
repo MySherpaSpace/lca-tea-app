@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/lca-tea-app/static/css/main.bd50b492.css",
-    "main.js": "/lca-tea-app/static/js/main.79474f86.js",
-    "static/media/app-logo.png": "/lca-tea-app/static/media/app-logo.719ce4be535565a40de2.png",
+    "main.css": "/lca-tea-app/static/css/main.ba60aef0.css",
+    "main.js": "/lca-tea-app/static/js/main.7422bd05.js",
+    "static/media/hanhwa-logo.svg": "/lca-tea-app/static/media/hanhwa-logo.5c28cf4eccaba210ba6dd4f7e62eedf1.svg",
     "index.html": "/lca-tea-app/index.html",
-    "main.bd50b492.css.map": "/lca-tea-app/static/css/main.bd50b492.css.map",
-    "main.79474f86.js.map": "/lca-tea-app/static/js/main.79474f86.js.map"
+    "main.ba60aef0.css.map": "/lca-tea-app/static/css/main.ba60aef0.css.map",
+    "main.7422bd05.js.map": "/lca-tea-app/static/js/main.7422bd05.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd50b492.css",
-    "static/js/main.79474f86.js"
+    "static/css/main.ba60aef0.css",
+    "static/js/main.7422bd05.js"
   ]
 }
