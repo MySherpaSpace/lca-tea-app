@@ -1,0 +1,31 @@
+.box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  width: 30vh;
+}
+
+.features .columns {
+  height: 500px;
+  justify-content: center;
+}
+
+.features .columns .column .box{
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 5rem;
+  height: 5rem;
+  background: lightgray;
+  border-radius: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
