@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+
+// Update Bulma's global variables
+$family-sans-serif: "Noto Sans", sans-serif;
+
+// Update some of Bulma's component variables
+$body-background-color: hsl(0, 0%, 96%);
+
+$primary: #ff5003;
+$link: #ff8e00;
+$info: #003f7d;
+
+// Import everything from Bulma
+@import "../myBulma/bulma-0.9.4/bulma.sass";

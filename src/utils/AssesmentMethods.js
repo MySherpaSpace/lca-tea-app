@@ -1,7 +1,7 @@
 const AssesmentMethods = [
   {
     method_name: "Aware",
-    method_uui: "d07113f5-5b74-3af3-84ae-9548cbceafd3",
+    method_uuid: "d07113f5-5b74-3af3-84ae-9548cbceafd3",
     impact_categories: [
       {
         category: "Water use",
@@ -12,7 +12,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "BEES+",
-    method_uui: "3905f4a1-6244-3748-b0b5-04e03262c5a8",
+    method_uuid: "3905f4a1-6244-3748-b0b5-04e03262c5a8",
     impact_categories: [
       {
         category: "Acidification",
@@ -83,7 +83,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "Berger et al 2014 (Water Scarcity)",
-    method_uui: "f1565e3e-245a-3d5a-9c02-8b792c3cafaa",
+    method_uuid: "f1565e3e-245a-3d5a-9c02-8b792c3cafaa",
     impact_categories: [
       {
         category: "WDI",
@@ -94,7 +94,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "Boulay et al 2011 (Human Health)",
-    method_uui: "3f290cab-a3ac-38af-b940-f31faf74cbe4",
+    method_uuid: "3f290cab-a3ac-38af-b940-f31faf74cbe4",
     impact_categories: [
       {
         category: "HH, distribution",
@@ -110,7 +110,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "Boulay et al 2011 (Water Scarcity)",
-    method_uui: "3c7418c4-b970-39ea-9ecf-b351266877f6",
+    method_uuid: "3c7418c4-b970-39ea-9ecf-b351266877f6",
     impact_categories: [
       {
         category: "WSI",
@@ -121,7 +121,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "CML-IA baseline",
-    method_uui: "effb055a-ad78-39bd-8dc0-341411db4ae7",
+    method_uuid: "effb055a-ad78-39bd-8dc0-341411db4ae7",
     impact_categories: [
       {
         category: "Abiotic depletion",
@@ -182,7 +182,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "CML-IA non-baseline",
-    method_uui: "46f19b82-ee92-3ff9-b909-d7cab2647b16",
+    method_uuid: "46f19b82-ee92-3ff9-b909-d7cab2647b16",
     impact_categories: [
       {
         category: "Abiotic depletion (elem., econ. reserve)",
@@ -438,7 +438,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "Crustal Scarcity Indicator",
-    method_uui: "f79fcbc9-24b4-4bb7-beba-c839850fe37f",
+    method_uuid: "f79fcbc9-24b4-4bb7-beba-c839850fe37f",
     impact_categories: [
       {
         category: "Crustal scarcity indicator",
@@ -449,7 +449,7 @@ const AssesmentMethods = [
   },
   {
     method_name: "Cumulative Energy Demand",
-    method_uui: "be749018-2f47-3c25-819e-6e0c6fca1cb5",
+    method_uuid: "be749018-2f47-3c25-819e-6e0c6fca1cb5",
     impact_categories: [
       {
         category: "Non renewable, fossil",
