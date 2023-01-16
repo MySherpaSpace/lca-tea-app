@@ -1,0 +1,12 @@
+.dropdown-content {
+  max-height: 13em;
+  overflow: auto;
+}
+
+.dropdown-menu {
+  position: fixed !important;
+  z-index: 20;
+  left: unset !important;
+  top: unset !important;
+  margin-top: 35px;
+}
